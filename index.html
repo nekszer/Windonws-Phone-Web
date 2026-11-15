@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es" data-wui-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WindowsUI SDK v3.0 — Matriz de Controles</title>
+  <link rel="stylesheet" href="css/wui-core.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI+Variable+Display:wght@300;400;500;600;700&family=Segoe+UI+Variable+Text:wght@300;400;500;600&family=Cascadia+Code:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+</head>
+<body data-wui-os="wp8">
+
+  <header class="wui-page-header">
+    <div class="wui-page-title">
+      WindowsUI SDK <small>v3.0 · WP 8 · WP 10 · WP 11</small>
+    </div>
+    <div class="wui-controls">
+      <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--wui-text-sub);">
+        <span class="material-symbols-outlined" style="font-size:16px;">devices</span>
+        OS:
+        <select class="wui-select" id="osSelector">
+          <option value="wp8">WP 8</option>
+          <option value="wp10">WP 10</option>
+          <option value="wp11">WP 11</option>
+        </select>
+      </label>
+      <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--wui-text-sub);">
+        <span class="material-symbols-outlined" style="font-size:16px;">palette</span>
+        Acento:
+        <input type="color" id="accentPicker" value="#0078d4" style="width:28px; height:24px; border:none; background:transparent; cursor:pointer;">
+      </label>
+      <button class="wui-btn-ghost" id="themeBtn">
+        <span class="material-symbols-outlined" style="font-size:16px;">light_mode</span>
+        <span id="themeLabel">Claro</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="wui-page">
+    <div class="wui-hero" style="margin-bottom:24px;">
+      <h1 style="font-size:22px; margin-bottom:6px;">Matriz de Controles WindowsUI</h1>
+      <p style="color:var(--wui-text-sub); font-size:13px;">
+        SDK modular con 22 controles. Cambia el <strong>OS</strong> arriba y todos los iframes se reestilizan vía
+        <code>&lt;body data-wui-os="wp8|wp10|wp11"&gt;</code>.
+      </p>
+    </div>
+
+    <div class="wui-demo-grid" id="demoGrid"></div>
+  </main>
+
+  <script src="js/wui-core.js"></script>
+  <script>
+    const controls = [
+      'auto-suggest-box', 'choice', 'color-picker', 'command-bar', 'context-menu',
+      'date-picker', 'dialog', 'hub', 'info-sheet', 'jump-grid', 'list-item',
+      'list-picker-flyout', 'long-list-selector', 'picker-flyout', 'pivot',
+      'progress-ring', 'section-header', 'semantic-zoom', 'slider',
+      'swatch-grid', 'time-picker', 'toggle'
+    ];
+
+    const grid = document.getElementById('demoGrid');
+    const osSelector = document.getElementById('osSelector');
+    const themeBtn = document.getElementById('themeBtn');
+    const themeLabel = document.getElementById('themeLabel');
+    const accentPicker = document.getElementById('accentPicker');
+
+    controls.forEach(name => {
+      const title = name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      const card = document.createElement('div');
+      card.className = 'wui-demo-card';
+      card.innerHTML = `
+        <div class="wui-demo-card-head">
+          <span class="wui-demo-card-title">${title}</span>
+          <span class="wui-demo-card-tag">${name}</span>
+        </div>
+        <iframe class="wui-demo-frame" src="controls/${name}.html" data-control="${name}" loading="lazy"></iframe>
+      `;
+      grid.appendChild(card);
+    });
+
+    function applyOS(os) {
+      document.body.dataset.wuiOs = os;
+      localStorage.setItem('wui-os', os);
+      document.querySelectorAll('iframe[data-control]').forEach(iframe => {
+        try {
+          iframe.contentDocument.body.dataset.wuiOs = os;
+        } catch (e) {}
+      });
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.wuiTheme = theme;
+      localStorage.setItem('wui-theme', theme);
+      themeLabel.textContent = theme === 'dark' ? 'Claro' : 'Oscuro';
+      document.querySelectorAll('iframe[data-control]').forEach(iframe => {
+        try {
+          iframe.contentDocument.documentElement.dataset.wuiTheme = theme;
+        } catch (e) {}
+      });
+    }
+
+    function applyAccent(color) {
+      document.documentElement.style.setProperty('--wui-accent', color);
+      document.documentElement.style.setProperty('--wui-accent-soft', color + '26');
+      document.documentElement.style.setProperty('--wui-accent-border', color + '73');
+      document.querySelectorAll('iframe[data-control]').forEach(iframe => {
+        try {
+          const doc = iframe.contentDocument;
+          doc.documentElement.style.setProperty('--wui-accent', color);
+          doc.documentElement.style.setProperty('--wui-accent-soft', color + '26');
+          doc.documentElement.style.setProperty('--wui-accent-border', color + '73');
+        } catch (e) {}
+      });
+    }
+
+    // Sincronizar iframes cuando terminen de cargar
+    document.querySelectorAll('iframe[data-control]').forEach(iframe => {
+      iframe.addEventListener('load', () => {
+        try {
+          const doc = iframe.contentDocument;
+          doc.body.dataset.wuiOs = document.body.dataset.wuiOs;
+          doc.documentElement.dataset.wuiTheme = document.documentElement.dataset.wuiTheme;
+          const accent = getComputedStyle(document.documentElement).getPropertyValue('--wui-accent').trim();
+          doc.documentElement.style.setProperty('--wui-accent', accent);
+        } catch (e) {}
+      });
+    });
+
+    // Estado inicial desde localStorage
+    const savedOs = localStorage.getItem('wui-os') || 'wp8';
+    const savedTheme = localStorage.getItem('wui-theme') || 'dark';
+    osSelector.value = savedOs;
+    applyOS(savedOs);
+    applyTheme(savedTheme);
+
+    // Listeners
+    osSelector.addEventListener('change', () => applyOS(osSelector.value));
+    themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.dataset.wuiTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+    accentPicker.addEventListener('input', (e) => applyAccent(e.target.value));
+  </script>
+</body>
+</html>

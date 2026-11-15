@@ -1,0 +1,201 @@
+/* ── CommandBar — Fiel al HTML de referencia ── */
+
+.wui-cmdbar-frame {
+  width: 100%;
+  border: 2px solid var(--era-border);
+  background: var(--era-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wui-cmdbar-mock {
+  padding: 14px;
+  font-size: 13px;
+  color: var(--era-fg-sub);
+  min-height: 60px;
+}
+
+.wui-cmdbar-bar {
+  width: 100%;
+  border-top: 2px solid var(--era-border);
+  background: var(--era-bg);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s var(--wui-metro-ease);
+}
+
+.wui-cmdbar-mainrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  min-height: 54px;
+}
+
+.wui-cmdbar-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.wui-cmdbar-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: transparent;
+  border: none;
+  color: var(--era-fg);
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.wui-cmdbar-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2.5px solid var(--era-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--era-bg);
+  color: var(--era-fg);
+  transition: background 0.1s, color 0.1s;
+}
+
+.wui-cmdbar-btn:active .wui-cmdbar-circle {
+  background: var(--era-fg);
+  color: var(--era-bg);
+}
+
+.wui-cmdbar-circle .material-symbols-outlined { font-size: 20px; }
+
+.wui-cmdbar-label {
+  font-size: 11px;
+  text-transform: lowercase;
+  color: var(--era-fg-sub);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.wui-cmdbar-dots {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  color: var(--era-fg);
+  padding: 6px 8px;
+  user-select: none;
+}
+
+/* Menú dropdown debajo (WP 8) */
+.wui-cmdbar-menu {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px 14px;
+  border-top: 1px solid var(--era-border);
+  background: var(--era-bg);
+}
+.wui-cmdbar-menu-item {
+  font-size: 15px;
+  font-weight: 300;
+  text-transform: lowercase;
+  color: var(--era-fg);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.wui-cmdbar-menu-item:hover { color: var(--wui-accent); }
+
+/* ═══ WP 8 — 3 modos ═══ */
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="collapsed"] .wui-cmdbar-mainrow {
+  min-height: 28px; padding: 2px 14px; justify-content: flex-end;
+}
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="collapsed"] .wui-cmdbar-actions,
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="collapsed"] .wui-cmdbar-label,
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="collapsed"] .wui-cmdbar-menu { display: none; }
+
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="sticky"] .wui-cmdbar-mainrow { min-height: 54px; }
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="sticky"] .wui-cmdbar-actions { display: flex; }
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="sticky"] .wui-cmdbar-label { display: none; }
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="sticky"] .wui-cmdbar-menu { display: none; }
+
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="expand"] .wui-cmdbar-mainrow { min-height: 64px; }
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="expand"] .wui-cmdbar-actions { display: flex; }
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="expand"] .wui-cmdbar-label { display: block; }
+[data-wui-os="wp8"] .wui-cmdbar-bar[data-mode="expand"] .wui-cmdbar-menu { display: flex; }
+
+/* ═══ WP 10 — Iconos planos + menú hacia arriba ═══ */
+[data-wui-os="wp10"] .wui-cmdbar-frame { border: 1px solid var(--era-border); }
+[data-wui-os="wp10"] .wui-cmdbar-bar { background: var(--era-surface); border-top: 1px solid var(--era-border); position: relative; }
+[data-wui-os="wp10"] .wui-cmdbar-mainrow { padding: 0 8px; gap: 2px; min-height: 48px; }
+[data-wui-os="wp10"] .wui-cmdbar-actions { gap: 0; }
+[data-wui-os="wp10"] .wui-cmdbar-btn {
+  flex-direction: column; gap: 2px; padding: 0 8px; min-width: 58px; height: 48px; justify-content: center;
+}
+[data-wui-os="wp10"] .wui-cmdbar-circle {
+  width: auto; height: auto; border: none; border-radius: 0; background: transparent;
+}
+[data-wui-os="wp10"] .wui-cmdbar-circle .material-symbols-outlined { font-size: 20px; color: var(--era-fg); }
+[data-wui-os="wp10"] .wui-cmdbar-label {
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--era-fg);
+}
+[data-wui-os="wp10"] .wui-cmdbar-bar[data-mode="sticky"] .wui-cmdbar-label { display: none; }
+[data-wui-os="wp10"] .wui-cmdbar-bar[data-mode="collapsed"] .wui-cmdbar-mainrow {
+  min-height: 28px; padding: 2px 8px; justify-content: flex-end;
+}
+[data-wui-os="wp10"] .wui-cmdbar-bar[data-mode="collapsed"] .wui-cmdbar-actions { display: none; }
+
+/* Menú WP 10: posicionado ARRIBA de la barra */
+[data-wui-os="wp10"] .wui-cmdbar-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0; right: 0;
+  display: none;
+  flex-direction: column;
+  background: var(--era-surface);
+  border-top: none;
+  border-bottom: 1px solid var(--era-border);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.3);
+  padding: 4px 0;
+  z-index: 10;
+}
+[data-wui-os="wp10"] .wui-cmdbar-bar[data-mode="expand"] .wui-cmdbar-menu { display: flex; }
+[data-wui-os="wp10"] .wui-cmdbar-menu-item {
+  font-size: 13.5px;
+  font-weight: 400;
+  text-transform: none;
+  color: var(--era-fg);
+  padding: 10px 16px;
+  border-radius: 0;
+  cursor: pointer;
+}
+[data-wui-os="wp10"] .wui-cmdbar-menu-item:hover { background: rgba(128, 128, 128, 0.15); color: var(--era-fg); }
+
+/* ═══ WP 11 — Acrylic, labels sentence-case ═══ */
+[data-wui-os="wp11"] .wui-cmdbar-frame {
+  border: 1px solid var(--era-border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+}
+[data-wui-os="wp11"] .wui-cmdbar-bar { background: transparent; border-top: 1px solid var(--era-border); }
+[data-wui-os="wp11"] .wui-cmdbar-mainrow { min-height: 48px; padding: 4px 6px; }
+[data-wui-os="wp11"] .wui-cmdbar-actions { gap: 4px; }
+[data-wui-os="wp11"] .wui-cmdbar-btn {
+  flex-direction: row; gap: 6px; padding: 6px 12px; border-radius: 4px;
+}
+[data-wui-os="wp11"] .wui-cmdbar-btn:hover { background: rgba(255, 255, 255, 0.08); }
+[data-wui-os="wp11"] .wui-cmdbar-circle {
+  width: auto; height: auto; border: none; border-radius: 0; background: transparent;
+}
+[data-wui-os="wp11"] .wui-cmdbar-circle .material-symbols-outlined { font-size: 18px; color: var(--wui-accent); }
+[data-wui-os="wp11"] .wui-cmdbar-label { font-size: 12.5px; text-transform: none; color: var(--era-fg); }
+[data-wui-os="wp11"] .wui-cmdbar-menu {
+  border-radius: 0 0 6px 6px;
+  backdrop-filter: blur(30px);
+  background: rgba(36, 36, 36, 0.92);
+}
+[data-wui-theme="light"] [data-wui-os="wp11"] .wui-cmdbar-menu { background: rgba(255, 255, 255, 0.92); }

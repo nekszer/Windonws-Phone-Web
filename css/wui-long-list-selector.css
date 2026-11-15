@@ -1,0 +1,99 @@
+/* ── LongListSelector (con GroupStyle + JumpList) ── */
+.wui-lls {
+  width: 100%;
+  max-width: 360px;
+  height: 320px;
+  background: var(--era-bg);
+  color: var(--era-fg);
+  position: relative;
+  overflow-y: auto;
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  font-family: var(--era-font);
+}
+.wui-lls-group { position: relative; }
+.wui-lls-group-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--era-surface);
+  border-bottom: 1px solid var(--era-border);
+  color: var(--wui-accent);
+}
+[data-wui-os="wp8"] .wui-lls-group-header {
+  background: #000000;
+  border-bottom: 1px solid #333;
+  font-weight: 300;
+  font-size: 15px;
+  text-transform: lowercase;
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-lls-group-header {
+  background: #ffffff;
+  border-bottom-color: #ddd;
+}
+.wui-lls-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--era-border);
+  font-size: 14px;
+}
+[data-wui-os="wp8"] .wui-lls-item {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+[data-wui-os="wp8"] .wui-lls-item:hover {
+  background: var(--wui-accent);
+  color: #ffffff;
+}
+[data-wui-os="wp10"] .wui-lls-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+[data-wui-os="wp11"] .wui-lls-item {
+  border-radius: 4px;
+  margin: 2px 4px;
+  border-bottom: none;
+}
+[data-wui-os="wp11"] .wui-lls-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* JumpList lateral */
+.wui-lls-jumplist {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  z-index: 3;
+}
+.wui-lls-jumplist-item {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--era-fg-sub);
+  cursor: pointer;
+  border-radius: 2px;
+}
+[data-wui-os="wp8"] .wui-lls-jumplist-item.active {
+  background: var(--wui-accent);
+  color: #fff;
+}
+[data-wui-os="wp10"] .wui-lls-jumplist-item.active {
+  color: var(--era-fg);
+  font-weight: 700;
+}
+[data-wui-os="wp11"] .wui-lls-jumplist-item.active {
+  background: var(--wui-accent);
+  color: #fff;
+}

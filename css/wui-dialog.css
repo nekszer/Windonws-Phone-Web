@@ -1,0 +1,111 @@
+/* ── ContentDialog ── */
+.wui-dialog {
+  width: 100%;
+  max-width: 340px;
+  background: var(--era-surface);
+  color: var(--era-fg);
+  border-radius: var(--era-radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--era-font);
+}
+.wui-dialog-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--era-fg);
+}
+.wui-dialog-body {
+  font-size: 13px;
+  color: var(--era-fg-sub);
+}
+.wui-dialog-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+.wui-dialog-btn {
+  padding: 6px 16px;
+  border: var(--era-border-width) solid var(--era-border);
+  background: transparent;
+  color: var(--era-fg);
+  font-family: inherit;
+  font-size: 12.5px;
+  border-radius: var(--era-radius);
+  cursor: pointer;
+}
+.wui-dialog-btn.primary {
+  background: var(--wui-accent);
+  border-color: var(--wui-accent);
+  color: #ffffff;
+}
+
+/* ═══ WP 8 ═══ */
+[data-wui-os="wp8"] .wui-dialog {
+  background: var(--era-bg);
+  border-left: 4px solid var(--wui-accent);
+  border-radius: 0;
+}
+[data-wui-os="wp8"] .wui-dialog-title {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+[data-wui-os="wp8"] .wui-dialog-btn {
+  border-radius: 0;
+  border: 2.5px solid var(--era-border);
+  font-weight: 600;
+  padding: 8px 16px;
+}
+[data-wui-os="wp8"] .wui-dialog-btn.primary {
+  background: var(--wui-accent);
+  border-color: var(--wui-accent);
+}
+
+/* ═══ WP 10 — Corregido modo claro (surface dinámica + borde superior) ═══ */
+[data-wui-os="wp10"] .wui-dialog {
+  background: var(--era-surface);
+  border-top: 2px solid var(--wui-accent);
+  border-radius: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+[data-wui-theme="dark"] [data-wui-os="wp10"] .wui-dialog {
+  background: #1e1e1e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+[data-wui-theme="light"] [data-wui-os="wp10"] .wui-dialog {
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+[data-wui-os="wp10"] .wui-dialog-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+[data-wui-os="wp10"] .wui-dialog-btn {
+  flex: 1;
+  border: 2px solid var(--era-border);
+  padding: 8px 10px;
+  font-size: 13px;
+  background: transparent;
+  color: var(--era-fg);
+}
+[data-wui-os="wp10"] .wui-dialog-btn.primary {
+  background: var(--wui-accent);
+  border-color: var(--wui-accent);
+  color: #ffffff;
+}
+
+/* ═══ WP 11 ═══ */
+[data-wui-os="wp11"] .wui-dialog {
+  background: rgba(36, 36, 36, 0.92);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--era-border);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+[data-wui-theme="light"] [data-wui-os="wp11"] .wui-dialog {
+  background: rgba(255, 255, 255, 0.92);
+}
+[data-wui-os="wp11"] .wui-dialog-btn { border-radius: 4px; }

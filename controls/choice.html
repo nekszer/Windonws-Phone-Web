@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" data-wui-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/wui-core.css">
+  <link rel="stylesheet" href="../css/wui-choice.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+</head>
+<body data-wui-os="wp8">
+  <div class="wui-stage">
+    <div style="display:flex; flex-direction:column; gap:16px; width:100%; max-width:280px;">
+      <div class="wui-choice" data-wui-choice>
+        <div class="wui-checkbox checked">
+          <svg viewBox="0 0 18 18"><path d="M3 9.5l4 4L15 4.5"/></svg>
+        </div>
+        <span>Notificaciones activas</span>
+      </div>
+      <div class="wui-choice" data-wui-choice data-wui-group="g1">
+        <div class="wui-radio checked">
+          <div class="wui-radio-dot"></div>
+        </div>
+        <span>Opción A</span>
+      </div>
+      <div class="wui-choice" data-wui-choice data-wui-group="g1">
+        <div class="wui-radio">
+          <div class="wui-radio-dot"></div>
+        </div>
+        <span>Opción B</span>
+      </div>
+    </div>
+  </div>
+  <script src="../js/wui-core.js"></script>
+  <script src="../js/wui-choice.js"></script>
+</body>
+</html>

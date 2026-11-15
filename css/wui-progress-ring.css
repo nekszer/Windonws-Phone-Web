@@ -1,0 +1,49 @@
+.wui-progressring { display: inline-flex; align-items: center; justify-content: center; }
+
+/* WP 8: puntos en línea */
+.wui-pr-dots { display: none; gap: 4px; align-items: center; }
+.wui-pr-dots span {
+  width: 5px; height: 5px; background: var(--era-fg); opacity: 0;
+  animation: wui-metro-dot 3.2s infinite cubic-bezier(0.2, 0.85, 0.4, 0.95);
+}
+.wui-pr-dots span:nth-child(1) { animation-delay: 0s; }
+.wui-pr-dots span:nth-child(2) { animation-delay: 0.18s; }
+.wui-pr-dots span:nth-child(3) { animation-delay: 0.36s; }
+.wui-pr-dots span:nth-child(4) { animation-delay: 0.54s; }
+.wui-pr-dots span:nth-child(5) { animation-delay: 0.72s; }
+@keyframes wui-metro-dot {
+  0% { opacity: 0; transform: translateX(-10px); }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(10px); }
+}
+
+/* WP 10: anillo orbital de 6 puntos discontinuos con fade (RTM) [citation:2] */
+.wui-pr-orbit { display: none; width: 40px; height: 40px; position: relative; animation: wui-spin 4s linear infinite; }
+.wui-pr-orbit-dot {
+  position: absolute; width: 6px; height: 6px; background: var(--wui-accent); border-radius: 50%;
+  top: 50%; left: 50%; margin: -3px 0 0 -3px; transform-origin: 0 0;
+  animation: wui-orbit-fade 3.2s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.wui-pr-orbit-dot:nth-child(1) { transform: rotate(0deg) translateX(16px); animation-delay: 0s; }
+.wui-pr-orbit-dot:nth-child(2) { transform: rotate(60deg) translateX(16px); animation-delay: 0.1s; }
+.wui-pr-orbit-dot:nth-child(3) { transform: rotate(120deg) translateX(16px); animation-delay: 0.2s; }
+.wui-pr-orbit-dot:nth-child(4) { transform: rotate(180deg) translateX(16px); animation-delay: 0.3s; }
+.wui-pr-orbit-dot:nth-child(5) { transform: rotate(240deg) translateX(16px); animation-delay: 0.4s; }
+.wui-pr-orbit-dot:nth-child(6) { transform: rotate(300deg) translateX(16px); animation-delay: 0.5s; }
+@keyframes wui-orbit-fade {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes wui-spin { to { transform: rotate(360deg); } }
+
+/* WP 11: anillo C continuo */
+.wui-pr-svg { display: none; width: 34px; height: 34px; animation: wui-spin 1s linear infinite; }
+.wui-pr-svg circle { stroke: var(--wui-accent); stroke-linecap: round; stroke-dasharray: 70 150; stroke-width: 3.5; fill: none; }
+
+/* Visibilidad por OS */
+[data-wui-os="wp8"] .wui-pr-dots { display: flex; }
+[data-wui-os="wp10"] .wui-pr-orbit { display: block; }
+[data-wui-os="wp11"] .wui-pr-svg { display: block; }

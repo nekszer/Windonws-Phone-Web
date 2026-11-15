@@ -1,0 +1,92 @@
+/* ── JumpGrid ── */
+.wui-jump-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  width: 100%;
+  padding: 4px;
+  background: var(--era-surface);
+  border-radius: var(--era-radius);
+}
+.wui-jump-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--era-font);
+  font-size: 14px;
+  font-weight: var(--era-font-light);
+  background: transparent;
+  color: var(--era-fg-sub);
+  border: none;
+  cursor: pointer;
+  border-radius: var(--era-radius);
+  transition: all 0.12s;
+}
+
+/* ═══ WP 8 ═══ */
+[data-wui-os="wp8"] .wui-jump-grid {
+  background: var(--era-bg);
+  gap: 2px;
+  border-radius: 0;
+}
+[data-wui-os="wp8"] .wui-jump-cell {
+  background: rgba(128, 128, 128, 0.15);
+  color: var(--era-fg-sub);
+  justify-content: flex-start;
+  padding-left: 6px;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: 300;
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-jump-cell {
+  background: #e8e8e8;
+  color: #888888;
+}
+[data-wui-os="wp8"] .wui-jump-cell.active {
+  background: var(--wui-accent);
+  color: #ffffff;
+}
+
+/* ═══ WP 10 — Corregido para modo claro ═══ */
+[data-wui-os="wp10"] .wui-jump-grid {
+  background: transparent;
+  gap: 0;
+}
+[data-wui-os="wp10"] .wui-jump-cell {
+  color: var(--era-fg-sub);
+  font-size: 15px;
+  border-radius: 0;
+}
+[data-wui-theme="dark"] [data-wui-os="wp10"] .wui-jump-cell {
+  color: rgba(255, 255, 255, 0.5);
+}
+[data-wui-theme="light"] [data-wui-os="wp10"] .wui-jump-cell {
+  color: rgba(0, 0, 0, 0.45);
+}
+[data-wui-os="wp10"] .wui-jump-cell.active {
+  color: var(--era-fg);
+  font-weight: 600;
+}
+
+/* ═══ WP 11 ═══ */
+[data-wui-os="wp11"] .wui-jump-grid {
+  gap: 4px;
+  padding: 8px;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid var(--era-border);
+}
+[data-wui-theme="light"] [data-wui-os="wp11"] .wui-jump-grid {
+  background: rgba(255, 255, 255, 0.75);
+}
+[data-wui-os="wp11"] .wui-jump-cell {
+  border-radius: 4px;
+  color: var(--era-fg-sub);
+  font-size: 13.5px;
+}
+[data-wui-os="wp11"] .wui-jump-cell.active {
+  background: var(--wui-accent);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 120, 212, 0.4);
+}

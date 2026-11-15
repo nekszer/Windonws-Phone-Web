@@ -1,0 +1,79 @@
+/* ── Hub ── */
+.wui-hub {
+  width: 100%;
+  max-width: 420px;
+  height: 280px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  font-family: var(--era-font);
+  color: var(--era-fg);
+}
+.wui-hub::-webkit-scrollbar { display: none; }
+.wui-hub-section {
+  flex: 0 0 78%;
+  scroll-snap-align: start;
+  padding: 16px;
+  background: var(--era-surface);
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wui-hub-section-title {
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: lowercase;
+  color: var(--wui-accent);
+  margin-bottom: 4px;
+}
+.wui-hub-section-body {
+  font-size: 13px;
+  color: var(--era-fg-sub);
+  flex: 1;
+}
+
+/* ═══ WP 8 — Fondo plano, borde izquierdo acento, título uppercase ═══ */
+[data-wui-os="wp8"] .wui-hub-section {
+  background: transparent;
+  border: none;
+  border-left: 4px solid var(--wui-accent);
+  padding-left: 16px;
+  border-radius: 0;
+}
+[data-wui-os="wp8"] .wui-hub-section-title {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
+/* ═══ WP 10 — Cards rectangulares con borde ═══ */
+[data-wui-os="wp10"] .wui-hub-section {
+  border-radius: 2px;
+  background: #262626;
+}
+[data-wui-os="wp10"] .wui-hub-section-title {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+/* ═══ WP 11 — Mica/Acrylic cards con elevación ═══ */
+[data-wui-os="wp11"] .wui-hub-section {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+[data-wui-os="wp11"] .wui-hub-section-title {
+  text-transform: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--era-fg);
+}

@@ -1,0 +1,110 @@
+/* ── AutoSuggestBox ── */
+.wui-auto-suggest {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  font-family: var(--era-font);
+}
+.wui-asb-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  background: var(--era-surface);
+  color: var(--era-fg);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.wui-asb-input:focus { border-color: var(--wui-accent); }
+
+.wui-asb-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: var(--era-surface);
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 5;
+  display: none;
+}
+.wui-asb-suggestions.open { display: block; }
+.wui-asb-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 1px solid var(--era-border);
+  color: var(--era-fg);
+}
+.wui-asb-item:last-child { border-bottom: none; }
+.wui-asb-item:hover,
+.wui-asb-item.selected {
+  background: var(--wui-accent);
+  color: #ffffff;
+}
+
+/* ═══ WP 8 — Input blanco/negro, Segoe Light ═══ */
+[data-wui-os="wp8"] .wui-asb-input {
+  background: #ffffff;
+  color: #000000;
+  border: 2.5px solid #000000;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 300;
+}
+[data-wui-theme="dark"] [data-wui-os="wp8"] .wui-asb-input {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+[data-wui-os="wp8"] .wui-asb-suggestions {
+  border-radius: 0;
+  border: 2.5px solid var(--era-border);
+}
+[data-wui-os="wp8"] .wui-asb-item {
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: lowercase;
+  padding: 12px 14px;
+}
+
+/* ═══ WP 10 — Borde 2px, radius 2px ═══ */
+[data-wui-os="wp10"] .wui-asb-input {
+  border: 2px solid var(--era-border);
+  border-radius: 2px;
+  background: var(--era-surface);
+}
+[data-wui-os="wp10"] .wui-asb-suggestions { border-radius: 2px; }
+[data-wui-os="wp10"] .wui-asb-item { font-size: 13.5px; }
+
+/* ═══ WP 11 — Acrylic, radius 4-8px ═══ */
+[data-wui-os="wp11"] .wui-asb-input {
+  border-radius: 4px;
+  border: 1px solid var(--era-border);
+  background: rgba(255,255,255,0.05);
+}
+[data-wui-os="wp11"] .wui-asb-input:focus {
+  background: rgba(255,255,255,0.08);
+}
+[data-wui-os="wp11"] .wui-asb-suggestions {
+  border-radius: 8px;
+  border: 1px solid var(--era-border);
+  background: rgba(36,36,36,0.92);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  padding: 4px;
+}
+[data-wui-os="wp11"] .wui-asb-item {
+  border-radius: 4px;
+  border-bottom: none;
+  font-size: 12.5px;
+}
+[data-wui-os="wp11"] .wui-asb-item:hover {
+  background: rgba(128,128,128,0.15);
+  color: var(--era-fg);
+}

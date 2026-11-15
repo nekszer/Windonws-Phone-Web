@@ -1,0 +1,84 @@
+/* ── ContextMenu ── */
+.wui-contextmenu {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 4px 0;
+  background: var(--era-surface);
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  font-family: var(--era-font);
+}
+.wui-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  color: var(--era-fg);
+  font-family: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.wui-menu-item:hover { background: rgba(128,128,128,0.15); }
+.wui-menu-item .material-symbols-outlined { font-size: 16px; color: var(--wui-accent); }
+.wui-menu-shortcut {
+  font-size: 11px;
+  color: var(--era-fg-sub);
+  font-family: var(--wui-font-mono);
+}
+
+/* ═══ WP 8 — Fondo blanco, texto negro Light 20px ═══ */
+[data-wui-os="wp8"] .wui-contextmenu {
+  width: 240px;
+  background: #ffffff;
+  border: none;
+  border-radius: 0;
+  padding: 12px 0;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+}
+[data-wui-theme="dark"] [data-wui-os="wp8"] .wui-contextmenu { background: #ffffff; }
+[data-wui-os="wp8"] .wui-menu-item {
+  padding: 14px 20px;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+[data-wui-os="wp8"] .wui-menu-item:hover {
+  background: transparent;
+  color: var(--wui-accent);
+}
+[data-wui-os="wp8"] .wui-menu-item .material-symbols-outlined { display: none; }
+
+/* ═══ WP 10 — Oscuro, hover sutil ═══ */
+[data-wui-os="wp10"] .wui-contextmenu {
+  width: 200px;
+  background: rgba(30,30,30,0.95);
+  border: 1px solid var(--era-border);
+  border-radius: 2px;
+}
+[data-wui-os="wp10"] .wui-menu-item { font-size: 13.5px; }
+
+/* ═══ WP 11 — Acrylic, radius 8px ═══ */
+[data-wui-os="wp11"] .wui-contextmenu {
+  width: 210px;
+  background: rgba(36,36,36,0.88);
+  backdrop-filter: blur(35px);
+  border: 1px solid var(--era-border);
+  border-radius: 8px;
+  padding: 6px;
+}
+[data-wui-theme="light"] [data-wui-os="wp11"] .wui-contextmenu {
+  background: rgba(255,255,255,0.92);
+}
+[data-wui-os="wp11"] .wui-menu-item {
+  border-radius: 4px;
+  padding: 7px 10px;
+  font-size: 12.5px;
+}

@@ -1,0 +1,108 @@
+/* ── ListPickerFlyout ── */
+.wui-list-picker {
+  width: 100%;
+  max-width: 320px;
+  font-family: var(--era-font);
+  color: var(--era-fg);
+}
+.wui-lpf-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  background: var(--era-surface);
+  cursor: pointer;
+  font-size: 13.5px;
+}
+.wui-lpf-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.wui-lpf-modal.open { display: flex; }
+.wui-lpf-dialog {
+  width: 90%;
+  max-width: 340px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--era-surface);
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  display: flex;
+  flex-direction: column;
+}
+.wui-lpf-header {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--era-border);
+}
+.wui-lpf-list {
+  display: flex;
+  flex-direction: column;
+}
+.wui-lpf-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--era-border);
+  font-size: 13.5px;
+}
+.wui-lpf-item:last-child { border-bottom: none; }
+.wui-lpf-item:hover { background: rgba(128,128,128,0.12); }
+.wui-lpf-item.selected {
+  background: var(--wui-accent);
+  color: #ffffff;
+}
+
+/* ═══ WP 8 — 0 radius, texto Light ═══ */
+[data-wui-os="wp8"] .wui-lpf-field {
+  background: #000;
+  border: 2.5px solid var(--era-border);
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-lpf-field { background: #fff; }
+[data-wui-os="wp8"] .wui-lpf-dialog {
+  background: #000;
+  border: 2.5px solid var(--era-border);
+  border-radius: 0;
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-lpf-dialog { background: #fff; }
+[data-wui-os="wp8"] .wui-lpf-header {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--wui-accent);
+}
+[data-wui-os="wp8"] .wui-lpf-item {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: lowercase;
+  padding: 14px 18px;
+}
+
+/* ═══ WP 10 — radius 2px ═══ */
+[data-wui-os="wp10"] .wui-lpf-dialog { border-radius: 2px; }
+[data-wui-os="wp10"] .wui-lpf-item { font-size: 14px; }
+
+/* ═══ WP 11 — Acrylic, radius 8px ═══ */
+[data-wui-os="wp11"] .wui-lpf-field { border-radius: 4px; }
+[data-wui-os="wp11"] .wui-lpf-dialog {
+  background: rgba(36,36,36,0.92);
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--era-border);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+}
+[data-wui-theme="light"] [data-wui-os="wp11"] .wui-lpf-dialog {
+  background: rgba(255,255,255,0.92);
+}

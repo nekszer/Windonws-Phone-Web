@@ -1,0 +1,69 @@
+/* ── SemanticZoom ── */
+.wui-semantic-zoom {
+  width: 100%;
+  max-width: 360px;
+  height: 320px;
+  background: var(--era-bg);
+  color: var(--era-fg);
+  position: relative;
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  overflow: hidden;
+  font-family: var(--era-font);
+}
+.wui-sz-view {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  transition: transform 0.3s var(--wui-spring), opacity 0.3s;
+}
+.wui-sz-zoom-out {
+  transform: scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.wui-semantic-zoom.zoomed .wui-sz-zoom-in {
+  transform: scale(1.1);
+  opacity: 0;
+  pointer-events: none;
+}
+.wui-semantic-zoom.zoomed .wui-sz-zoom-out {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.wui-sz-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 12px;
+}
+.wui-sz-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--era-surface);
+  border: 1px solid var(--era-border);
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--era-radius);
+  color: var(--era-fg);
+}
+[data-wui-os="wp8"] .wui-sz-cell {
+  background: var(--wui-accent);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+}
+[data-wui-os="wp10"] .wui-sz-cell {
+  border-radius: 2px;
+  background: rgba(255,255,255,0.05);
+}
+[data-wui-os="wp11"] .wui-sz-cell {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--era-border);
+  border-radius: 6px;
+}

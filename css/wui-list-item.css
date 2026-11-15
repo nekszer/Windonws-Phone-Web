@@ -1,0 +1,91 @@
+/* ── ListItem ── */
+.wui-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: var(--era-radius);
+  background: transparent;
+  color: var(--era-fg);
+  transition: background 0.15s;
+  position: relative;
+  font-family: var(--era-font);
+}
+.wui-list-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--era-fg);
+}
+.wui-list-sub {
+  font-size: 11.5px;
+  color: var(--era-fg-sub);
+}
+
+/* ═══ WP 8 ═══ */
+[data-wui-os="wp8"] .wui-list-item {
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 0;
+}
+[data-wui-os="wp8"] .wui-list-item:hover,
+[data-wui-os="wp8"] .wui-list-item:active {
+  background: var(--wui-accent);
+  color: #ffffff;
+}
+[data-wui-os="wp8"] .wui-list-title {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+[data-wui-os="wp8"] .wui-list-item:hover .wui-list-title,
+[data-wui-os="wp8"] .wui-list-item:hover .wui-list-sub {
+  color: #ffffff;
+}
+
+/* ═══ WP 10 — Corregido modo claro ═══ */
+[data-wui-os="wp10"] .wui-list-item {
+  padding: 8px 10px;
+  border-radius: 2px;
+}
+[data-wui-os="wp10"] .wui-list-item:hover {
+  background: rgba(128, 128, 128, 0.15);
+}
+[data-theme="light"] [data-wui-os="wp10"] .wui-list-item:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+[data-wui-os="wp10"] .wui-list-title { font-size: 14px; font-weight: 500; }
+[data-wui-os="wp10"] .wui-list-sub { font-size: 12px; }
+
+/* ═══ WP 11 ═══ */
+[data-wui-os="wp11"] .wui-list-item {
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+[data-wui-os="wp11"] .wui-list-item:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+[data-wui-os="wp11"] .wui-list-item.selected {
+  background: rgba(128, 128, 128, 0.08);
+}
+[data-wui-os="wp11"] .wui-list-item.selected::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background: var(--wui-accent);
+  border-radius: 9999px;
+}
+[data-wui-os="wp11"] .wui-list-title { font-size: 13.5px; font-weight: 500; }
+[data-wui-os="wp11"] .wui-list-sub { font-size: 11.5px; }
+[data-wui-os="wp11"] .wui-list-chevron {
+  color: var(--era-fg-sub);
+  transition: transform 0.15s;
+}
+[data-wui-os="wp11"] .wui-list-item:hover .wui-list-chevron {
+  transform: translateX(2px);
+  color: var(--era-fg);
+}

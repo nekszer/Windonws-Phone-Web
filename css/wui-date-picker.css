@@ -1,0 +1,253 @@
+/* ── DatePicker / TimePicker — Fiel al HTML de referencia ── */
+.wui-datepicker,
+.wui-timepicker {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--era-font);
+  color: var(--era-fg);
+}
+
+/* Sección con label superior */
+.wui-dtp-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.wui-dtp-section-label {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--era-fg-sub);
+  letter-spacing: 0.05em;
+}
+
+/* Baldosas resumen */
+.wui-dtp-tiles {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+.wui-dtp-tile {
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  background: var(--wui-accent);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid var(--wui-accent);
+  cursor: pointer;
+}
+.wui-dtp-tile-num {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+}
+.wui-dtp-tile-lbl {
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: lowercase;
+  margin-top: 2px;
+}
+
+/* Hint */
+.wui-dtp-hint {
+  font-size: 11px;
+  color: var(--era-fg-sub);
+  text-transform: lowercase;
+}
+
+/* Panel in-place expandible */
+.wui-dtp-inplace {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  background: var(--era-bg);
+  color: var(--era-fg);
+  border: 2.5px solid var(--era-border);
+  padding: 10px;
+  box-sizing: border-box;
+  user-select: none;
+  margin-top: 6px;
+}
+.wui-dtp-inplace.open { display: flex; }
+.wui-dtp-inplace-title {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--wui-accent);
+  margin-bottom: 8px;
+}
+.wui-dtp-inplace-cols {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.wui-dtp-inplace-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.wui-dtp-opt {
+  padding: 6px 2px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--era-border);
+  background: transparent;
+  color: var(--era-fg);
+  font-weight: 400;
+  font-size: 14px;
+}
+.wui-dtp-opt.selected {
+  border-color: var(--wui-accent);
+  background: var(--wui-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Acciones con círculos ✓/✕ */
+.wui-dtp-inplace-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-top: 8px;
+  border-top: 1.5px solid var(--era-border);
+}
+.wui-dtp-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2.5px solid var(--era-border);
+  background: var(--era-bg);
+  color: var(--era-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+}
+.wui-dtp-circle-btn:active {
+  background: var(--era-fg);
+  color: var(--era-bg);
+}
+
+/* ═══ WP 10 — Segmentos rectangulares ═══ */
+[data-wui-os="wp10"] .wui-dtp-section-label {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 4px;
+}
+[data-wui-os="wp10"] .wui-dtp-field {
+  display: flex;
+  border: 2px solid var(--era-border);
+  border-radius: 2px;
+  background: var(--era-surface);
+  cursor: pointer;
+}
+[data-wui-os="wp10"] .wui-dtp-part {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  font-size: 13.5px;
+  border-right: 1px solid var(--era-border);
+}
+[data-wui-os="wp10"] .wui-dtp-part:last-child { border-right: none; }
+
+/* ═══ WP 11 — Segmentos con radius 4px ═══ */
+[data-wui-os="wp11"] .wui-dtp-field {
+  display: flex;
+  border: 1px solid var(--era-border);
+  border-radius: 4px;
+  background: var(--era-surface);
+  cursor: pointer;
+}
+[data-wui-os="wp11"] .wui-dtp-part {
+  flex: 1;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid var(--era-border);
+}
+[data-wui-os="wp11"] .wui-dtp-part:last-child { border-right: none; }
+
+/* Modales WP 10 / WP 11 */
+.wui-dtp-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.wui-dtp-modal.open { display: flex; }
+.wui-dtp-dialog {
+  width: 90%;
+  max-width: 360px;
+  background: var(--era-surface);
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.wui-dtp-wheel {
+  position: relative;
+  display: flex;
+  height: 240px;
+  overflow: hidden;
+  border: 1px solid var(--era-border);
+  border-radius: var(--era-radius);
+}
+.wui-dtp-wheel-col {
+  flex: 1;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  padding: 100px 0;
+  scrollbar-width: none;
+}
+.wui-dtp-wheel-col::-webkit-scrollbar { display: none; }
+.wui-dtp-wheel-col > div {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: center;
+  font-size: 15px;
+  cursor: pointer;
+}
+.wui-dtp-wheel-col > div.selected {
+  color: var(--wui-accent);
+  font-weight: 600;
+}
+.wui-dtp-highlight {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 40px;
+  transform: translateY(-50%);
+  background: var(--wui-accent);
+  opacity: 0.15;
+  pointer-events: none;
+}
+[data-wui-os="wp10"] .wui-dtp-highlight {
+  opacity: 0.95;
+  mix-blend-mode: multiply;
+}
+[data-wui-os="wp10"] .wui-dtp-wheel-col > div.selected { color: #ffffff; }

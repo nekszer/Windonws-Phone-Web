@@ -1,0 +1,263 @@
+/* ============================================================
+   WindowsUI SDK v3.1 — Core
+   El SO se define en <body data-wui-os="wp8|wp10|wp11">
+   El tema en <html data-wui-theme="dark|light">
+   ============================================================ */
+
+:root {
+  --wui-accent: #0078d4;
+  --wui-accent-soft: rgba(0, 120, 212, 0.15);
+  --wui-accent-border: rgba(0, 120, 212, 0.45);
+  --wui-font: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --wui-font-display: 'Segoe UI Variable Display', 'Segoe UI', sans-serif;
+  --wui-font-mono: 'Cascadia Code', monospace;
+  --wui-spring: cubic-bezier(0.1, 0.9, 0.2, 1);
+  --wui-metro-ease: cubic-bezier(0.1, 0.85, 0.15, 1.0);
+}
+
+/* ── Tema claro global ── */
+[data-wui-theme="light"] {
+  --wui-bg: #f4f5f8;
+  --wui-surface: #ffffff;
+  --wui-surface-2: #f0f2f5;
+  --wui-text: #191919;
+  --wui-text-sub: #5d6168;
+  --wui-text-dim: #8a8f98;
+  --wui-border: rgba(0, 0, 0, 0.1);
+  --wui-border-strong: rgba(0, 0, 0, 0.22);
+}
+
+/* ── Tema oscuro global ── */
+[data-wui-theme="dark"] {
+  --wui-bg: #141414;
+  --wui-surface: #1e1e1e;
+  --wui-surface-2: #262626;
+  --wui-text: #f3f3f3;
+  --wui-text-sub: #b3b3b3;
+  --wui-text-dim: #707070;
+  --wui-border: rgba(255, 255, 255, 0.09);
+  --wui-border-strong: rgba(255, 255, 255, 0.18);
+}
+
+/* ============================================================
+   TOKENS POR ERA
+   Los --era-* se sobrescriben según tema
+   ============================================================ */
+
+/* ═══ WP 8 · Metro ═══ */
+[data-wui-os="wp8"] {
+  --era-bg: #000000;
+  --era-surface: #000000;
+  --era-fg: #ffffff;
+  --era-fg-sub: #8e8e93;
+  --era-border: #ffffff;
+  --era-border-width: 2.5px;
+  --era-radius: 0px;
+  --era-font: 'Segoe UI', sans-serif;
+  --era-font-light: 300;
+  --era-section-transform: uppercase;
+  --era-section-color: var(--wui-accent);
+}
+
+/* WP 8 · Tema claro — inversión completa */
+[data-wui-theme="light"] [data-wui-os="wp8"] {
+  --era-bg: #ffffff;
+  --era-surface: #ffffff;
+  --era-fg: #000000;
+  --era-fg-sub: #666666;
+  --era-border: #000000;
+}
+
+/* ═══ WP 10 ═══ */
+[data-wui-os="wp10"] {
+  --era-bg: #1c1c1c;
+  --era-surface: #262626;
+  --era-fg: #ffffff;
+  --era-fg-sub: #a2a2a2;
+  --era-border: rgba(255, 255, 255, 0.22);
+  --era-border-width: 2px;
+  --era-radius: 2px;
+  --era-font: 'Segoe UI', sans-serif;
+  --era-font-light: 400;
+  --era-section-transform: uppercase;
+  --era-section-color: var(--wui-accent);
+}
+
+[data-wui-theme="light"] [data-wui-os="wp10"] {
+  --era-bg: #f3f3f5;
+  --era-surface: #ffffff;
+  --era-fg: #1a1a1a;
+  --era-fg-sub: #666666;
+  --era-border: rgba(0, 0, 0, 0.2);
+}
+
+/* ═══ WP 11 ═══ */
+[data-wui-os="wp11"] {
+  --era-bg: #1f1f1f;
+  --era-surface: rgba(255, 255, 255, 0.07);
+  --era-fg: #ffffff;
+  --era-fg-sub: #9e9e9e;
+  --era-border: rgba(255, 255, 255, 0.14);
+  --era-border-width: 1px;
+  --era-radius: 6px;
+  --era-font: 'Segoe UI Variable Text', 'Segoe UI', sans-serif;
+  --era-font-light: 400;
+  --era-section-transform: none;
+  --era-section-color: var(--wui-text-sub);
+}
+
+[data-wui-theme="light"] [data-wui-os="wp11"] {
+  --era-bg: #f9f9fb;
+  --era-surface: rgba(255, 255, 255, 0.9);
+  --era-fg: #181818;
+  --era-fg-sub: #62656d;
+  --era-border: rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   Reset
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--wui-bg);
+  color: var(--wui-text);
+  font-family: var(--wui-font);
+  font-size: 13.5px;
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background 0.25s, color 0.25s;
+}
+
+/* Stage de demo */
+.wui-stage {
+  background: var(--era-bg);
+  color: var(--era-fg);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Página principal */
+.wui-page { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+.wui-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(20,20,20,0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  border-bottom: 1px solid var(--wui-border);
+  padding: 12px 24px;
+  margin: -24px -24px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+[data-wui-theme="light"] .wui-page-header { background: rgba(244,245,248,0.9); }
+
+.wui-page-title {
+  font-family: var(--wui-font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+.wui-page-title small {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: var(--wui-accent-soft);
+  color: var(--wui-accent);
+  border: 1px solid var(--wui-accent-border);
+  margin-left: 8px;
+}
+
+.wui-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.wui-select, .wui-btn-ghost {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--wui-border);
+  background: var(--wui-surface);
+  color: var(--wui-text);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Grid de demos */
+.wui-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+.wui-demo-card {
+  background: var(--wui-surface);
+  border: 1px solid var(--wui-border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.wui-demo-card-head {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--wui-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wui-demo-card-title { font-size: 14px; font-weight: 600; }
+.wui-demo-card-tag {
+  font-family: var(--wui-font-mono);
+  font-size: 11px;
+  color: var(--wui-accent);
+  background: var(--wui-accent-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.wui-demo-frame {
+  width: 100%;
+  border: none;
+  min-height: 260px;
+  background: transparent;
+  display: block;
+}
+
+/* Hero */
+.wui-hero {
+  background: var(--wui-surface);
+  border: 1px solid var(--wui-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.wui-hero h1 {
+  font-family: var(--wui-font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.wui-hero p {
+  color: var(--wui-text-sub);
+  font-size: 13px;
+  max-width: 720px;
+}
+
+/* Utilidades */
+.wui-accent { color: var(--wui-accent); }
+.wui-muted { color: var(--wui-text-sub); }
+.wui-mono { font-family: var(--wui-font-mono); }
+.wui-hidden { display: none !important; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(128, 128, 128, 0.5); }

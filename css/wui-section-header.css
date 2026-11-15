@@ -1,0 +1,41 @@
+/* ── Section Header ── */
+.wui-section {
+  width: 100%;
+  color: var(--era-fg-sub);
+  font-family: var(--era-font);
+}
+
+/* ═══ WP 8 — Light 14px uppercase, color de acento ═══ */
+[data-wui-os="wp8"] .wui-section {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--wui-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ═══ WP 10 — Semibold 12px uppercase ═══ */
+[data-wui-os="wp10"] .wui-section {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wui-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ═══ WP 11 — Semibold 13.5px sentence-case con divisor ═══ */
+[data-wui-os="wp11"] .wui-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--era-border);
+  padding-bottom: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--era-fg);
+}
+.wui-section-meta {
+  font-size: 11px;
+  color: var(--era-fg-sub);
+  font-weight: 400;
+}

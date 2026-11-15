@@ -1,0 +1,103 @@
+/* ── Slider ── */
+.wui-slider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--era-font);
+  color: var(--era-fg);
+}
+.wui-slider-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+}
+.wui-slider-value {
+  font-weight: 600;
+  color: var(--wui-accent);
+  font-family: var(--wui-font-mono);
+}
+.wui-slider-track {
+  width: 100%;
+  height: 4px;
+  position: relative;
+  cursor: pointer;
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 2px;
+}
+.wui-slider-fill {
+  height: 100%;
+  background: var(--wui-accent);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.wui-slider-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s var(--wui-spring);
+  pointer-events: none;
+}
+
+/* ═══ WP 8 — Track plano + thumb rectangular con contraste por tema ═══ */
+[data-wui-os="wp8"] .wui-slider-track {
+  background: rgba(128, 128, 128, 0.4);
+  border-radius: 0;
+  height: 3px;
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-slider-track {
+  background: #d6d6d6;
+}
+[data-wui-os="wp8"] .wui-slider-fill { border-radius: 0; }
+[data-wui-os="wp8"] .wui-slider-thumb {
+  width: 12px;
+  height: 22px;
+  background: var(--era-fg);
+  border: 2px solid var(--era-bg);
+  border-radius: 0;
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-slider-thumb {
+  background: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+[data-wui-theme="dark"] [data-wui-os="wp8"] .wui-slider-thumb {
+  background: #ffffff;
+  border-color: #000000;
+}
+[data-wui-os="wp8"] .wui-slider-value {
+  font-size: 22px;
+  font-family: var(--era-font);
+  color: var(--era-fg);
+  font-weight: 700;
+}
+
+/* ═══ WP 10 — Thumb blanco con borde de acento (contraste en ambos temas) ═══ */
+[data-wui-os="wp10"] .wui-slider-track {
+  background: rgba(128, 128, 128, 0.35);
+}
+[data-wui-theme="light"] [data-wui-os="wp10"] .wui-slider-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+[data-wui-os="wp10"] .wui-slider-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 2px solid var(--wui-accent);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* ═══ WP 11 ═══ */
+[data-wui-os="wp11"] .wui-slider-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--wui-accent);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+[data-wui-os="wp11"] .wui-slider-track:hover .wui-slider-thumb {
+  transform: translate(-50%, -50%) scale(1.15);
+}

@@ -1,0 +1,51 @@
+/* ── SwatchGrid — Celdas grandes, legibles ── */
+.wui-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.wui-swatch {
+  aspect-ratio: 1;
+  min-width: 36px;
+  min-height: 36px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s var(--wui-spring), box-shadow 0.15s;
+  position: relative;
+}
+
+/* ═══ WP 8 — Cuadrado plano, marco interno blanco ═══ */
+[data-wui-os="wp8"] .wui-swatch-grid { gap: 6px; }
+[data-wui-os="wp8"] .wui-swatch { border-radius: 0; }
+[data-wui-os="wp8"] .wui-swatch.active {
+  box-shadow: 0 0 0 3px var(--era-fg) inset;
+}
+
+/* ═══ WP 10 — Borde externo blanco + check ═══ */
+[data-wui-os="wp10"] .wui-swatch.active::after {
+  content: '✓';
+  position: absolute;
+  inset: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* ═══ WP 11 — Celdas redondeadas, anillo doble ═══ */
+[data-wui-os="wp11"] .wui-swatch-grid { gap: 8px; }
+[data-wui-os="wp11"] .wui-swatch {
+  border-radius: 6px;
+  border: 1px solid var(--era-border);
+}
+[data-wui-os="wp11"] .wui-swatch:hover { transform: scale(1.08); }
+[data-wui-os="wp11"] .wui-swatch.active {
+  transform: scale(0.92);
+  box-shadow: 0 0 0 2px var(--era-bg), 0 0 0 4px var(--wui-accent);
+}

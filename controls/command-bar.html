@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" data-wui-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/wui-core.css">
+  <link rel="stylesheet" href="../css/wui-command-bar.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+</head>
+<body data-wui-os="wp8">
+  <div class="wui-stage" style="flex-direction:column; gap:12px; align-items:stretch;">
+    <div data-wui-commandbar
+         data-mode="sticky"
+         data-mock="Contenido de la aplicación WP 8"
+         data-actions='[{"icon":"edit","label":"editar"},{"icon":"add","label":"nuevo"},{"icon":"share","label":"compartir"}]'
+         data-menu='[{"label":"seleccionar todo"},{"label":"configuración"}]'></div>
+
+    <div style="display:flex; gap:6px; justify-content:center;">
+      <button class="wui-btn-ghost" onclick="document.querySelector('[data-wui-commandbar]').__wui.setMode('collapsed')">Collapsed</button>
+      <button class="wui-btn-ghost" onclick="document.querySelector('[data-wui-commandbar]').__wui.setMode('sticky')">Sticky</button>
+      <button class="wui-btn-ghost" onclick="document.querySelector('[data-wui-commandbar]').__wui.setMode('expand')">Expand</button>
+    </div>
+  </div>
+  <script src="../js/wui-core.js"></script>
+  <script src="../js/wui-command-bar.js"></script>
+</body>
+</html>

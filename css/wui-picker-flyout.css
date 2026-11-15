@@ -1,0 +1,102 @@
+/* ── PickerFlyout ── */
+.wui-picker-flyout {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  background: var(--era-surface);
+  color: var(--era-fg);
+  border: var(--era-border-width) solid var(--era-border);
+  border-radius: var(--era-radius);
+  overflow: hidden;
+  font-family: var(--era-font);
+}
+.wui-picker-flyout-header {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--era-border);
+}
+.wui-picker-flyout-body {
+  padding: 16px;
+  font-size: 13px;
+  color: var(--era-fg-sub);
+  flex: 1;
+}
+.wui-picker-flyout-actions {
+  display: flex;
+  border-top: 1px solid var(--era-border);
+}
+.wui-picker-flyout-btn {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: var(--era-fg);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.wui-picker-flyout-btn.primary { color: var(--wui-accent); }
+.wui-picker-flyout-btn + .wui-picker-flyout-btn {
+  border-left: 1px solid var(--era-border);
+}
+
+/* ═══ WP 8 — Fondo negro, botones circulares ✓/✕ ═══ */
+[data-wui-os="wp8"] .wui-picker-flyout {
+  background: #000000;
+  border: 2.5px solid var(--era-border);
+  border-radius: 0;
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-picker-flyout {
+  background: #ffffff;
+}
+[data-wui-os="wp8"] .wui-picker-flyout-header {
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--wui-accent);
+}
+[data-wui-os="wp8"] .wui-picker-flyout-actions {
+  border-top: none;
+  justify-content: center;
+  gap: 24px;
+  padding: 12px 0;
+}
+[data-wui-os="wp8"] .wui-picker-flyout-btn {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2.5px solid var(--era-border);
+  padding: 0;
+  font-size: 18px;
+}
+[data-wui-os="wp8"] .wui-picker-flyout-btn + .wui-picker-flyout-btn {
+  border-left: 2.5px solid var(--era-border);
+}
+
+/* ═══ WP 10 — Borde de acento, radius 2px ═══ */
+[data-wui-os="wp10"] .wui-picker-flyout {
+  border-top: 2px solid var(--wui-accent);
+  border-radius: 2px;
+}
+[data-wui-os="wp10"] .wui-picker-flyout-header {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ═══ WP 11 — Acrylic, radius 8px ═══ */
+[data-wui-os="wp11"] .wui-picker-flyout {
+  background: rgba(36,36,36,0.92);
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--era-border);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+}
+[data-wui-theme="light"] [data-wui-os="wp11"] .wui-picker-flyout {
+  background: rgba(255,255,255,0.92);
+}
+[data-wui-os="wp11"] .wui-picker-flyout-btn { border-radius: 4px; }
