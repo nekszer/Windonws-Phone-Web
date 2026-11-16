@@ -4,66 +4,179 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WindowsUI SDK v3.0 — Matriz de Controles</title>
+  
+  <!-- CSS Base y de Controles de la interfaz -->
   <link rel="stylesheet" href="css/wui-core.css">
+  <link rel="stylesheet" href="css/wui-list-picker-flyout.css">
+  <link rel="stylesheet" href="css/wui-choice.css">
+  <link rel="stylesheet" href="css/wui-swatch-grid.css">
+  <link rel="stylesheet" href="css/wui-wp-alert.css">
+  <link rel="stylesheet" href="css/wui-toast.css">
+  
+  <!-- Fuentes -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI+Variable+Display:wght@300;400;500;600;700&family=Segoe+UI+Variable+Text:wght@300;400;500;600&family=Cascadia+Code:wght@400;500&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <style>
+    /* Estilos específicos para el panel de configuración del index */
+    .wui-config-panel {
+      background: var(--wui-surface);
+      border: 1px solid var(--wui-border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.2fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .wui-config-panel { grid-template-columns: 1fr; }
+    }
+    .wui-config-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+    .wui-config-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--wui-accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .wui-config-label .material-symbols-outlined { font-size: 14px; }
+  </style>
 </head>
 <body data-wui-os="wp8">
 
   <header class="wui-page-header">
     <div class="wui-page-title">
-      WindowsUI SDK <small>v3.0 · WP 8 · WP 10 · WP 11</small>
-    </div>
-    <div class="wui-controls">
-      <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--wui-text-sub);">
-        <span class="material-symbols-outlined" style="font-size:16px;">devices</span>
-        OS:
-        <select class="wui-select" id="osSelector">
-          <option value="wp8">WP 8</option>
-          <option value="wp10">WP 10</option>
-          <option value="wp11">WP 11</option>
-        </select>
-      </label>
-      <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--wui-text-sub);">
-        <span class="material-symbols-outlined" style="font-size:16px;">palette</span>
-        Acento:
-        <input type="color" id="accentPicker" value="#0078d4" style="width:28px; height:24px; border:none; background:transparent; cursor:pointer;">
-      </label>
-      <button class="wui-btn-ghost" id="themeBtn">
-        <span class="material-symbols-outlined" style="font-size:16px;">light_mode</span>
-        <span id="themeLabel">Claro</span>
-      </button>
+      WindowsUI SDK <small>v3.1 · WP 8 · WP 10 · WP 11</small>
     </div>
   </header>
 
   <main class="wui-page">
+
     <div class="wui-hero" style="margin-bottom:24px;">
       <h1 style="font-size:22px; margin-bottom:6px;">Matriz de Controles WindowsUI</h1>
       <p style="color:var(--wui-text-sub); font-size:13px;">
-        SDK modular con 22 controles. Cambia el <strong>OS</strong> arriba y todos los iframes se reestilizan vía
-        <code>&lt;body data-wui-os="wp8|wp10|wp11"&gt;</code>.
+        SDK modular con 22 controles. Configura el OS, tema y acento desde los paneles inferiores.
+        Cada cambio se propaga automáticamente a todos los controles.
       </p>
     </div>
 
+    <!-- ============================================================
+         PANEL DE CONFIGURACIÓN GLOBAL
+         ============================================================ -->
+    <div class="wui-config-panel">
+
+      <!-- OS Picker -->
+      <div class="wui-config-block">
+        <div class="wui-config-label">
+          <span class="material-symbols-outlined">devices</span>
+          Sistema operativo
+        </div>
+        <!-- IMPORTANTE: ID para identificar el origen del evento -->
+        <div id="osPickerContainer"
+             data-wui-listpicker
+             data-title="Seleccionar sistema operativo"
+             data-value="Windows Phone 8"
+             data-items='["Windows Phone 8","Windows 10 Mobile","Windows 11"]'></div>
+      </div>
+
+      <!-- Theme Choice -->
+      <div class="wui-config-block">
+        <div class="wui-config-label">
+          <span class="material-symbols-outlined">contrast</span>
+          Tema
+        </div>
+        <!-- IMPORTANTE: ID para identificar el origen del evento -->
+        <div id="themeContainer" style="display:flex; flex-direction:column; gap:10px;">
+          <div class="wui-choice" data-wui-choice data-wui-group="theme" data-theme="auto">
+            <div class="wui-radio checked"><div class="wui-radio-dot"></div></div>
+            <span>Predefinido</span>
+          </div>
+          <div class="wui-choice" data-wui-choice data-wui-group="theme" data-theme="light">
+            <div class="wui-radio"><div class="wui-radio-dot"></div></div>
+            <span>Claro</span>
+          </div>
+          <div class="wui-choice" data-wui-choice data-wui-group="theme" data-theme="dark">
+            <div class="wui-radio"><div class="wui-radio-dot"></div></div>
+            <span>Oscuro</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accent SwatchGrid -->
+      <div class="wui-config-block">
+        <div class="wui-config-label">
+          <span class="material-symbols-outlined">palette</span>
+          Color de acento
+        </div>
+        <!-- IMPORTANTE: ID para identificar el origen del evento -->
+        <div id="accentContainer"
+             data-wui-swatchgrid
+             data-active="#0078d4"></div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         GRID DE CONTROLES (IFRAMES)
+         ============================================================ -->
     <div class="wui-demo-grid" id="demoGrid"></div>
+
   </main>
 
+  <!-- ============================================================
+       MODAL ALERT ESTILO WINDOWS PHONE
+       ============================================================ -->
+  <div class="wui-wp-alert-overlay" id="wpAlertOverlay">
+    <div class="wui-wp-alert">
+      <div class="wui-wp-alert-title" id="wpAlertTitle">Configuración actualizada</div>
+      <div class="wui-wp-alert-body" id="wpAlertBody">Se ha cambiado el valor.</div>
+      <div class="wui-wp-alert-actions">
+        <button class="wui-wp-alert-btn" id="wpAlertOk">aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Justo antes de cerrar el </body>, añade el HTML del Toast -->
+  <div class="wui-toast" id="wpToast">
+    <div class="wui-toast-icon">
+      <!-- Usamos un icono de la fuente de Google o un emoji -->
+      <span class="material-symbols-outlined" style="font-size: 18px; color: #fff;">info</span>
+    </div>
+    <div class="wui-toast-content">
+      <div class="wui-toast-title" id="wpToastTitle">Sistema operativo</div>
+      <div class="wui-toast-body" id="wpToastBody">Se cambió a Windows 10 Mobile</div>
+    </div>
+    <button class="wui-toast-close" id="wpToastClose" title="Cerrar">✕</button>
+  </div>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
   <script src="js/wui-core.js"></script>
+  <script src="js/wui-choice.js"></script>
+  <script src="js/wui-list-picker-flyout.js"></script>
+  <script src="js/wui-swatch-grid.js"></script>
+
   <script>
+    /* ═══ 1. Poblar el grid de demos ═══ */
     const controls = [
-      'auto-suggest-box', 'choice', 'color-picker', 'command-bar', 'context-menu',
+      'list-picker-flyout', 'swatch-grid', 'choice', 'auto-suggest-box', 'command-bar', 'context-menu',
       'date-picker', 'dialog', 'hub', 'info-sheet', 'jump-grid', 'list-item',
-      'list-picker-flyout', 'long-list-selector', 'picker-flyout', 'pivot',
+      'long-list-selector', 'picker-flyout', 'pivot',
       'progress-ring', 'section-header', 'semantic-zoom', 'slider',
-      'swatch-grid', 'time-picker', 'toggle'
+      'time-picker', 'toggle'
     ];
 
     const grid = document.getElementById('demoGrid');
-    const osSelector = document.getElementById('osSelector');
-    const themeBtn = document.getElementById('themeBtn');
-    const themeLabel = document.getElementById('themeLabel');
-    const accentPicker = document.getElementById('accentPicker');
-
     controls.forEach(name => {
       const title = name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
       const card = document.createElement('div');
@@ -73,73 +186,133 @@
           <span class="wui-demo-card-title">${title}</span>
           <span class="wui-demo-card-tag">${name}</span>
         </div>
-        <iframe class="wui-demo-frame" src="controls/${name}.html" data-control="${name}" loading="lazy"></iframe>
+        <iframe class="wui-demo-frame" src="controls/${name}.html"
+                data-control="${name}" loading="lazy"></iframe>
       `;
       grid.appendChild(card);
     });
 
-    function applyOS(os) {
-      document.body.dataset.wuiOs = os;
-      localStorage.setItem('wui-os', os);
-      document.querySelectorAll('iframe[data-control]').forEach(iframe => {
-        try {
-          iframe.contentDocument.body.dataset.wuiOs = os;
-        } catch (e) {}
-      });
-    }
-
-    function applyTheme(theme) {
-      document.documentElement.dataset.wuiTheme = theme;
-      localStorage.setItem('wui-theme', theme);
-      themeLabel.textContent = theme === 'dark' ? 'Claro' : 'Oscuro';
-      document.querySelectorAll('iframe[data-control]').forEach(iframe => {
-        try {
-          iframe.contentDocument.documentElement.dataset.wuiTheme = theme;
-        } catch (e) {}
-      });
-    }
-
-    function applyAccent(color) {
-      document.documentElement.style.setProperty('--wui-accent', color);
-      document.documentElement.style.setProperty('--wui-accent-soft', color + '26');
-      document.documentElement.style.setProperty('--wui-accent-border', color + '73');
-      document.querySelectorAll('iframe[data-control]').forEach(iframe => {
-        try {
-          const doc = iframe.contentDocument;
-          doc.documentElement.style.setProperty('--wui-accent', color);
-          doc.documentElement.style.setProperty('--wui-accent-soft', color + '26');
-          doc.documentElement.style.setProperty('--wui-accent-border', color + '73');
-        } catch (e) {}
-      });
-    }
-
-    // Sincronizar iframes cuando terminen de cargar
+    /* ═══ 2. Sincronización inicial padre → iframes ═══ */
     document.querySelectorAll('iframe[data-control]').forEach(iframe => {
       iframe.addEventListener('load', () => {
         try {
           const doc = iframe.contentDocument;
-          doc.body.dataset.wuiOs = document.body.dataset.wuiOs;
-          doc.documentElement.dataset.wuiTheme = document.documentElement.dataset.wuiTheme;
-          const accent = getComputedStyle(document.documentElement).getPropertyValue('--wui-accent').trim();
+          if (!doc) return;
+          doc.body.dataset.wuiOs = WUI.OS.get();
+          doc.documentElement.dataset.wuiTheme = WUI.Theme.get();
+          const accent = WUI.Accent.get();
           doc.documentElement.style.setProperty('--wui-accent', accent);
+          doc.documentElement.style.setProperty('--wui-accent-soft', accent + '26');
+          doc.documentElement.style.setProperty('--wui-accent-border', accent + '73');
         } catch (e) {}
       });
     });
 
-    // Estado inicial desde localStorage
-    const savedOs = localStorage.getItem('wui-os') || 'wp8';
-    const savedTheme = localStorage.getItem('wui-theme') || 'dark';
-    osSelector.value = savedOs;
-    applyOS(savedOs);
-    applyTheme(savedTheme);
+    /* ═══ Lógica del Toast ═══ */
+  let toastTimeout;
+  
+  function showToast(title, body) {
+    const toast = document.getElementById('wpToast');
+    document.getElementById('wpToastTitle').textContent = title;
+    document.getElementById('wpToastBody').textContent = body;
+    
+    // Mostrar
+    toast.classList.add('open');
+    
+    // Auto-ocultar después de 3 segundos
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove('open');
+    }, 3000);
+  }
 
-    // Listeners
-    osSelector.addEventListener('change', () => applyOS(osSelector.value));
-    themeBtn.addEventListener('click', () => {
-      const next = document.documentElement.dataset.wuiTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
+  // Cerrar manualmente al hacer clic en la X o en el toast
+  document.getElementById('wpToastClose').addEventListener('click', () => {
+    document.getElementById('wpToast').classList.remove('open');
+    clearTimeout(toastTimeout);
+  });
+  document.getElementById('wpToast').addEventListener('click', (e) => {
+    if (e.target.tagName !== 'BUTTON') {
+      document.getElementById('wpToast').classList.remove('open');
+      clearTimeout(toastTimeout);
+    }
+  });
+
+  /* ═══ Lógica del OS ═══ */
+  const osMap = {
+    'Windows Phone 8': 'wp8',
+    'Windows 10 Mobile': 'wp10',
+    'Windows 11': 'wp11'
+  };
+  
+  document.addEventListener('wui-listpicker-change', (e) => {
+    const osContainer = document.getElementById('osPickerContainer');
+    if (!osContainer || !osContainer.contains(e.target)) return;
+
+    const os = osMap[e.detail.value];
+    if (os) {
+      WUI.OS.set(os);
+      WUI.syncToIframes();
+      // Llamamos al toast
+      showToast('Sistema operativo', 'Se cambió a ' + e.detail.value);
+    }
+  });
+
+  /* ═══ Lógica del Tema ═══ */
+  document.addEventListener('wui-choice', (e) => {
+    const themeContainer = document.getElementById('themeContainer');
+    if (!themeContainer || !themeContainer.contains(e.target)) return; 
+    if (!e.detail.checked) return;
+
+    const selectedWrapper = e.target.closest('[data-theme]');
+    if (!selectedWrapper) return;
+
+    const theme = selectedWrapper.dataset.theme;
+    let appliedTheme = theme;
+    let label = '';
+
+    if (theme === 'auto') {
+      appliedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      label = 'Predefinido (' + (appliedTheme === 'light' ? 'claro' : 'oscuro') + ')';
+    } else if (theme === 'light') {
+      appliedTheme = 'light';
+      label = 'Tema Claro';
+    } else if (theme === 'dark') {
+      appliedTheme = 'dark';
+      label = 'Tema Oscuro';
+    }
+
+    WUI.Theme.set(appliedTheme);
+    WUI.syncToIframes();
+    // Llamamos al toast
+    showToast('Tema', 'Se aplicó: ' + label);
+  });
+
+  /* ═══ Lógica del Acento ═══ */
+  document.addEventListener('wui-swatch-select', (e) => {
+    const accentContainer = document.getElementById('accentContainer');
+    if (!accentContainer || !accentContainer.contains(e.target)) return;
+
+    WUI.Accent.set(e.detail.color);
+    WUI.syncToIframes();
+    // Llamamos al toast
+    showToast('Color de acento', 'Se aplicó: ' + e.detail.color.toUpperCase());
+  });
+
+    /* ═══ 7. Sincronizar estado inicial ═══ */
+    document.addEventListener('wui-ready', () => {
+      // Sincronizar el valor visual del SwatchGrid con el acento real
+      const swatchGrid = document.getElementById('accentContainer').__wui;
+      if (swatchGrid) swatchGrid.setColor(WUI.Accent.get());
     });
-    accentPicker.addEventListener('input', (e) => applyAccent(e.target.value));
+
+    // Ejecutar sincronización inicial si WUI ya cargó
+    setTimeout(() => {
+      const swatchGrid = document.getElementById('accentContainer').__wui;
+      if (swatchGrid) swatchGrid.setColor(WUI.Accent.get());
+      WUI.syncToIframes();
+    }, 100);
+
   </script>
 </body>
 </html>

@@ -1,0 +1,67 @@
+/* ── Alerta estilo Windows Phone (Metro) ── */
+.wui-wp-alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.wui-wp-alert-overlay.open { display: flex; }
+
+.wui-wp-alert {
+  background: var(--wui-bg, #000);
+  border: 2.5px solid var(--wui-border-strong, #fff);
+  color: var(--wui-text, #fff);
+  width: 90%;
+  max-width: 380px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.wui-wp-alert-title {
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--wui-accent, #0078d4);
+}
+
+.wui-wp-alert-body {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--wui-text, #fff);
+}
+
+.wui-wp-alert-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--wui-border, rgba(255, 255, 255, 0.1));
+}
+
+.wui-wp-alert-btn {
+  background: var(--wui-accent, #0078d4);
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+.wui-wp-alert-btn:hover {
+  filter: brightness(1.1);
+}
+.wui-wp-alert-btn:active {
+  filter: brightness(0.9);
+}

@@ -5,32 +5,51 @@
   gap: 14px;
   cursor: pointer;
   user-select: none;
-  font-family: var(--era-font);
-  color: var(--era-fg);
   font-size: 14px;
+  color: var(--era-fg, var(--wui-text));
+  font-family: var(--era-font, var(--wui-font));
 }
+
 .wui-toggle-track {
   position: relative;
   background: transparent;
-  border: var(--era-border-width) solid var(--era-border);
-  border-radius: var(--era-radius);
+  border: var(--era-border-width, 2px) solid var(--era-border, var(--wui-border));
+  border-radius: var(--era-radius, 4px);
   transition: background 0.2s var(--wui-spring);
 }
+
 .wui-toggle-thumb {
   position: absolute;
-  background: var(--era-fg);
+  background: var(--era-fg, var(--wui-text));
   transition: transform 0.2s var(--wui-spring), background 0.2s;
 }
+
 .wui-toggle-label { font-size: 13.5px; }
 
-/* ═══ WP 8 — Fiel a la referencia (60×26, thumb 20px sobresale) ═══ */
+/* ═══ WP 8 — Define sus propias variables localmente ═══ */
+[data-wui-os="wp8"] .wui-toggle {
+  --era-bg: #000000;
+  --era-fg: #ffffff;
+  --era-border: #ffffff;
+  --era-border-width: 2.5px;
+  --era-radius: 0px;
+  --era-font: 'Segoe UI', sans-serif;
+  color: var(--era-fg);
+}
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-toggle {
+  --era-bg: #ffffff;
+  --era-fg: #000000;
+  --era-border: #000000;
+}
+
 [data-wui-os="wp8"] .wui-toggle-track {
   width: 60px;
   height: 26px;
-  border: 2.5px solid var(--era-fg);
+  border: 2.5px solid var(--era-border); /* Borde del track */
   background: var(--era-bg);
-  border-radius: 0;
+  position: relative;
 }
+
 [data-wui-os="wp8"] .wui-toggle-track.checked {
   background: var(--wui-accent);
   border-color: var(--wui-accent);
@@ -45,51 +64,42 @@
   border-radius: 0;
 }
 [data-wui-os="wp8"] .wui-toggle-track.checked .wui-toggle-thumb {
-  transform: translateX(40px);
-}
-[data-wui-os="wp8"] .wui-toggle-label {
-  font-size: 22px;
-  font-weight: 300;
-  min-width: 48px;
-}
-
-/* Inversión WP 8 — tema claro: thumb negro / borde blanco */
-[data-wui-theme="light"] [data-wui-os="wp8"] .wui-toggle-switch-shell,
-[data-wui-theme="light"] [data-wui-os="wp8"] .wui-toggle-track {
-  border-color: #000000;
-  background: #ffffff;
-}
-[data-wui-theme="light"] [data-wui-os="wp8"] .wui-toggle-track.checked {
-  background: var(--wui-accent);
-  border-color: var(--wui-accent);
+  transform: translateX(42px);
 }
 [data-wui-theme="light"] [data-wui-os="wp8"] .wui-toggle-thumb {
   background: #000000;
   border-color: #ffffff;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
-
-/* Inversión WP 8 — tema oscuro: thumb blanco / borde negro */
-[data-wui-theme="dark"] [data-wui-os="wp8"] .wui-toggle-track {
-  border-color: #ffffff;
-  background: #000000;
-}
-[data-wui-theme="dark"] [data-wui-os="wp8"] .wui-toggle-track.checked {
-  background: var(--wui-accent);
+[data-wui-theme="light"] [data-wui-os="wp8"] .wui-toggle-track.checked .wui-toggle-thumb {
+  background: #ffffff;
   border-color: var(--wui-accent);
 }
-[data-wui-theme="dark"] [data-wui-os="wp8"] .wui-toggle-thumb {
-  background: #ffffff;
-  border-color: #000000;
+[data-wui-os="wp8"] .wui-toggle-label {
+  font-size: 22px;
+  font-weight: 300;
+  min-width: 44px;
 }
 
 /* ═══ WP 10 ═══ */
+[data-wui-os="wp10"] .wui-toggle {
+  --era-surface: #000000;
+  --era-fg: #ffffff;
+  --era-border: rgba(255, 255, 255, 0.4);
+  color: var(--era-fg);
+}
+[data-wui-theme="light"] [data-wui-os="wp10"] .wui-toggle {
+  --era-surface: #ffffff;
+  --era-fg: #1a1a1a;
+  --era-border: rgba(0, 0, 0, 0.4);
+}
+
 [data-wui-os="wp10"] .wui-toggle-track {
-  width: 52px;
-  height: 32px;
+  width: 50px;
+  height: 20px;
   border-radius: 9999px;
   border: 2px solid var(--era-border);
-  background: var(--era-surface);
+  background: transparent;
 }
 [data-wui-os="wp10"] .wui-toggle-track.checked {
   border-color: var(--wui-accent);
@@ -99,16 +109,33 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  top: 6px;
-  left: 4px;
-  background: var(--era-fg);
+  top: 0px; /* Toca el borde superior */
+  left: 0px; /* Toca el borde izquierdo */
+  background: var(--era-fg); /* Blanco en dark, Negro en light */
+  transform: translate(2px, 2px); /* Margen interno inicial */
+  transition: transform 0.2s var(--wui-spring), width 0.2s, height 0.2s, background 0.2s;
 }
 [data-wui-os="wp10"] .wui-toggle-track.checked .wui-toggle-thumb {
-  transform: translateX(22px);
+  /* Al encenderse, el thumb se vuelve más pequeño (10x10) y se centra */
+  width: 10px;
+  height: 10px;
   background: #ffffff;
+  transform: translate(20px, 5px); 
 }
 
 /* ═══ WP 11 ═══ */
+[data-wui-os="wp11"] .wui-toggle {
+  --era-surface: rgba(255, 255, 255, 0.07);
+  --era-fg: #ffffff;
+  --era-border: rgba(255, 255, 255, 0.14);
+  color: var(--era-fg);
+}
+[data-wui-theme="light"] [data-wui-os="wp11"] .wui-toggle {
+  --era-surface: rgba(255, 255, 255, 0.9);
+  --era-fg: #181818;
+  --era-border: rgba(0, 0, 0, 0.12);
+}
+
 [data-wui-os="wp11"] .wui-toggle-track {
   width: 40px;
   height: 20px;
